@@ -12,6 +12,14 @@
 
 Node.js (five-server, http-server), Python, Ruby, Lighttpd, IIS 등을 활용해서 로컬컴퓨터에서 실행할 수 있다.
 
+자세한 내용은 해당 문서를 참고한다.
+
+en : (How to run things locally)[https://threejs.org/docs/index.html#manual/en/introduction/How-to-run-things-locally]
+
+ko : (로컬 환경에서 구동 방법)[https://threejs.org/docs/index.html#manual/ko/introduction/How-to-run-things-locally]
+
+
+
 
 ### 장면 만들기(Creating a scene)
 
