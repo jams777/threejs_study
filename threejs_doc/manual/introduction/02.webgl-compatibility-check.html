@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-		</style>
-        <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body { margin: 0; }
+    </style>
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
 
-        <!-- three.js 폴더에 있는 기본 배포 파일을 사용한다. THREE 사용가능 -->
-        <script type="importmap">
-          {
+    <!-- three.js 폴더에 있는 기본 배포 파일을 사용한다. THREE 사용가능 -->
+    <script type="importmap">
+        {
             "imports": {
-              "three": "../../../three.js/build/three.module.js"
+                "three": "../../../three.js/build/three.module.js"
             }
-          }
-        </script>
-        
-	</head>
-	<body>
-		
-		<script type="module">
+        }
+    </script>
+
+    </head>
+    <body>
+
+        <script type="module">
 
             import * as THREE from '../../../three.js/build/three.module.js';
             import WebGL from '../../../three.js/examples/jsm/capabilities/WebGL.js';
-            
-			if ( WebGL.isWebGLAvailable() ) {
+
+            if ( WebGL.isWebGLAvailable() ) {
 
                 alert('WebGL.isWebGLAvailable()');
             } else {
 
                 alert('WebGL not support');
             }
-		</script>
-	</body>
+        </script>
+    </body>
 </html>
