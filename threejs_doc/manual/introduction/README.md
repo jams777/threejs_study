@@ -9,4 +9,49 @@ en : (Creating a scene)[https://threejs.org/docs/index.html#manual/en/introducti
 ko : (Creating a scene)[https://threejs.org/docs/index.html#manual/ko/introduction/Creating-a-scene]
 
 
+### 설치(Installation)
 
+en : (Creating a scene)[https://threejs.org/docs/index.html#manual/en/introduction/Installation]
+
+ko : (Creating a scene)[https://threejs.org/docs/index.html#manual/ko/introduction/Installation]
+
+#### npm으로 설치하기
+
+``` 
+npm install --save three
+``` 
+
+아래처럼 불러옴
+
+```
+// Option 1: Import the entire three.js core library.
+import * as THREE from 'three';
+// Option 2: Import just the parts you need.
+import { Scene } from 'three'
+```
+
+#### static hosting 및 CDN을 통한 설치
+
+type="module" 을 사용하여 사용
+
+examples/jsm 폴더의 라이브러리를 사용하면 됨
+
+```
+<script type="module">
+
+  // 사이트에 방문하여 버전을 찾을 수 있음 https://cdn.skypack.dev/three.
+
+  import * as THREE from 'https://cdn.skypack.dev/three@<version>';
+
+  const scene = new THREE.Scene();
+
+</script>
+```
+
+예제
+
+```
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+const controls = new OrbitControls( camera, renderer.domElement );
+```
