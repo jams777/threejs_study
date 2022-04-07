@@ -2,6 +2,17 @@
 
 ## Manual 
 
+### Visual Studio Code 에서 실행해보기
+
+추천 [Five Server](https://marketplace.visualstudio.com/items?itemName=yandeu.five-server) for Visual Studio Code
+
+추천 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for Visual Studio Code
+
+추천 [Servez](https://greggman.github.io/servez/) 활용
+
+Node.js (five-server, http-server), Python, Ruby, Lighttpd, IIS 등을 활용해서 로컬컴퓨터에서 실행할 수 있다.
+
+
 ### 장면 만들기(Creating a scene)
 
 en : (Creating a scene)[https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene]
