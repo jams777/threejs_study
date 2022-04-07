@@ -19,8 +19,6 @@ en : (How to run things locally)[https://threejs.org/docs/index.html#manual/en/i
 ko : (로컬 환경에서 구동 방법)[https://threejs.org/docs/index.html#manual/ko/introduction/How-to-run-things-locally]
 
 
-
-
 ### 장면 만들기(Creating a scene)
 
 en : (Creating a scene)[https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene]
@@ -74,3 +72,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const controls = new OrbitControls( camera, renderer.domElement );
 ```
+
+
+#### WebGL 호환성 검사(WebGL compatibility check)
+
+en : (WebGL compatibility check)[https://threejs.org/docs/index.html#manual/en/introduction/WebGL-compatibility-check]
+
+ko : (WebGL 호환성 검사)[https://threejs.org/docs/index.html#manual/ko/introduction/WebGL-compatibility-check]
+
