@@ -21,6 +21,8 @@ ko : (로컬 환경에서 구동 방법)[https://threejs.org/docs/index.html#man
 
 ### 장면 만들기(Creating a scene)
 
+01.creating-a-scene.html 을 참고하세요
+
 en : (Creating a scene)[https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene]
 
 ko : (Creating a scene)[https://threejs.org/docs/index.html#manual/ko/introduction/Creating-a-scene]
@@ -76,6 +78,8 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 #### WebGL 호환성 검사(WebGL compatibility check)
 
+02.webgl-compatibility-check.html 을 참고하세요
+
 en : (WebGL compatibility check)[https://threejs.org/docs/index.html#manual/en/introduction/WebGL-compatibility-check]
 
 ko : (WebGL 호환성 검사)[https://threejs.org/docs/index.html#manual/ko/introduction/WebGL-compatibility-check]
@@ -88,4 +92,13 @@ ko : (WebGL 호환성 검사)[https://threejs.org/docs/index.html#manual/ko/intr
 en : (How to run things locally)[https://threejs.org/docs/index.html#manual/en/introduction/How-to-run-things-locally]
 
 ko : (로컬 환경에서 구동 방법)[https://threejs.org/docs/index.html#manual/ko/introduction/How-to-run-things-locally]
+
+
+#### 선 그리기(Drawing lines)
+
+03.drawing-line.html 을 참고하세요
+
+en : (Drawing lines)[https://threejs.org/docs/index.html#manual/en/introduction/Drawing-lines]
+
+ko : (선 그리기)[https://threejs.org/docs/index.html#manual/ko/introduction/Drawing-lines]
 
