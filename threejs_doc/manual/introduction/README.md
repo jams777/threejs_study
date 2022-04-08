@@ -80,3 +80,12 @@ en : (WebGL compatibility check)[https://threejs.org/docs/index.html#manual/en/i
 
 ko : (WebGL 호환성 검사)[https://threejs.org/docs/index.html#manual/ko/introduction/WebGL-compatibility-check]
 
+
+#### 로컬 환경에서 구동 방법(How to run things locally)
+
+위에 Visual Studio Code 에서 실행해보기 로 진행함.
+
+en : (How to run things locally)[https://threejs.org/docs/index.html#manual/en/introduction/How-to-run-things-locally]
+
+ko : (로컬 환경에서 구동 방법)[https://threejs.org/docs/index.html#manual/ko/introduction/How-to-run-things-locally]
+
