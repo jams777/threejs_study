@@ -102,3 +102,12 @@ en : (Drawing lines)[https://threejs.org/docs/index.html#manual/en/introduction/
 
 ko : (선 그리기)[https://threejs.org/docs/index.html#manual/ko/introduction/Drawing-lines]
 
+
+#### 텍스트 만들기(Creating text)
+
+04.creating-text.html 을 참고하세요
+
+en : (Creating text)[https://threejs.org/docs/index.html#manual/en/introduction/Creating-text]
+
+ko : (텍스트 만들기)[https://threejs.org/docs/index.html#manual/ko/introduction/Creating-text]
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body { margin: 0; }
+    </style>
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+    <!-- three.js 폴더에 있는 기본 배포 파일을 사용한다. THREE 사용가능 -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "../../../three.js/build/three.module.js"
+            }
+        }
+    </script>
+    <style>
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display:block;
+        }
+        #info1 {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display:block;
+        }
+        canvas{
+            top:100px;
+        }
+    </style>
+    </head>
+    <body>
+        <!-- 1. DOM + CSS -->
+        <div id="info">1. DOM + CSS 로 텍스트를 표시</div>
+        <div id="info1">2. 캔버스에 텍스트를 그리고 
+            <a href="https://threejs.org/docs/index.html#api/en/textures/Texture" target="_blank">Texture</a>로 사용
+        </div>
+        <div id="canvas" style="top:100px;position: relative;"></div>
+        <div style="width: 100%;text-align: center;position: absolute;top:400px;">
+            3. 본인이 가장 선호하는 3D 앱으로 만들고 three.js로 export 하세요. ( 이건 블랜더로드를 참고) <br><br>
+            4. 절차적 텍스트 geometry
+        </div>
+        <div id="canvas2" style="top:250px;position: relative;"></div>
+        <script type="module">
+
+            import * as THREE from '../../../three.js/build/three.module.js';
+            import { OrbitControls } from '../../../three.js/examples/jsm/controls/OrbitControls.js';
+            import { FontLoader } from '../../../three.js/examples/jsm/loaders/FontLoader.js';
+            import { TextGeometry } from '../../../three.js/examples/jsm/geometries/TextGeometry.js';
+
+            // 화면에 표시하는 기능
+            const renderer = new THREE.WebGLRenderer();
+            // 화면 전체 크기에 맞춰서 
+			// 1. 가로 크기
+			// 2. 세로 크기
+			// 3. updateStyle : 낮은 해상도를 원하면 false
+            renderer.setSize( window.innerWidth, window.innerHeight-600 );
+            // html 의 div 태그에 추가한다. canvas 가 추가됨.
+            document.getElementById('canvas').appendChild( renderer.domElement );
+
+            // 카메라를 생성한다. 카메라로 비추는 공간이 화면에 표시된다.
+			// 1. field of view(시야각) : FOV(시야각)는 해당 시점의 화면이 보여지는 정도. 각도 사용
+			// 2. aspect ratio(종횡비) : 대부분의 경우 요소의 높이와 너비에 맞추어 표시
+			// 3. near 가까운 절단면 : 절단면 이외의 값은 render 화면에 표시되지 않음
+			// 4. far 먼 절단면
+            const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+            // 카메라의 좌표를 바꿔본다. 물체에서 앞으로 100정도 떨어짐 (0, 0, 100)
+            camera.position.set( 0, 0, 100 );
+            // 카메라가 바라보는 좌표 설정
+            camera.lookAt( 0, 0, 0 );
+
+            // 장면을 생성한다.
+            const scene = new THREE.Scene();
+
+            // https://en.wikipedia.org/wiki/Canvas_element   https://threejs.org/docs/#api/en/textures/CanvasTexture
+            const cv = document.createElement( 'canvas' );
+            cv.width = 1536 //  3 * 512
+            cv.height = 512;
+            const ctx = cv.getContext( '2d' );
+            ctx.fillStyle = '#fefefe'; 
+            ctx.fillRect( 0, 0, cv.width, cv.height );
+            ctx.fillStyle = '#129912';
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.font = 'bold 6vh Arial';
+			// https://unicode.org/emoji/charts/full-emoji-list.html#1f642 (mark and copy - column Browser)
+            ctx.fillText( ' THREE  | three.js playground', 0, 0.1 * cv.height );
+            ctx.fillText( ' THREE  |  ', 0, 0.2 * cv.height );
+            ctx.fillText( ' THREE  | with a flag 🏳, rotating squirrel 🐿, flower 🌻', 0, 0.3 * cv.height );
+            ctx.fillText( ' THREE  | and many other things  ', 0, 0.4 * cv.height );
+            ctx.fillText( ' THREE  | * learning by playing * ', 0, 0.5 * cv.height );
+            ctx.fillText( ' THREE  | ', 0, 0.6 * cv.height);
+            ctx.fillText( ' THREE  | 😀   it should bring you joy     😀', 0, 0.7 * cv.height );
+            ctx.fillText( ' THREE  | ', 0, 0.8 * cv.height );
+            ctx.fillText( ' THREE  | 😂    ♠ ♣ ♥ ♦  🐞  ♪ ♫ ♭ ♮ ♯    😂 ', 0, 0.9 * cv.height );
+            const txtGeometry = new THREE.BoxGeometry( 90, 90, 0.6 ); // w 3 : h 1
+            const cvTexture = new THREE.Texture( cv );
+            cvTexture.needsUpdate = true; // otherwise all black only
+            const spineMat = new THREE.MeshPhongMaterial( { color: 0xa5800e } );
+            const cvMaterial = new THREE.MeshBasicMaterial( { map: cvTexture  } );
+            const cvMaterials = [ spineMat, spineMat, spineMat, spineMat, cvMaterial, cvMaterial ]; 
+            const cvTxtMesh = new THREE.Mesh( txtGeometry, cvMaterials );
+            cvTxtMesh.rotation.y = 2.4; // radiant
+            cvTxtMesh.position.set( -3, -0.59, 3 );
+            scene.add( cvTxtMesh );
+
+            // 변경된 내용을 화면에 표시한다.
+            renderer.render( scene, camera );
+
+
+            // https://threejs.org/docs/index.html#examples/en/geometries/TextGeometry
+            // 화면에 표시하는 기능
+            const renderer1 = new THREE.WebGLRenderer();
+            // 화면 전체 크기에 맞춰서 
+			// 1. 가로 크기
+			// 2. 세로 크기
+			// 3. updateStyle : 낮은 해상도를 원하면 false
+            renderer1.setSize( window.innerWidth, window.innerHeight-500 );
+            // html 의 div 태그에 추가한다. canvas 가 추가됨.
+            document.getElementById('canvas2').appendChild( renderer1.domElement );
+
+            // 카메라를 생성한다. 카메라로 비추는 공간이 화면에 표시된다.
+			// 1. field of view(시야각) : FOV(시야각)는 해당 시점의 화면이 보여지는 정도. 각도 사용
+			// 2. aspect ratio(종횡비) : 대부분의 경우 요소의 높이와 너비에 맞추어 표시
+			// 3. near 가까운 절단면 : 절단면 이외의 값은 render 화면에 표시되지 않음
+			// 4. far 먼 절단면
+            const camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight-600, 0.3, 100 );
+            // 카메라의 좌표를 바꿔본다. 물체에서 앞으로 100정도 떨어짐 (0, 0, 100)
+            camera1.position.set( 0, 0, 0 );
+            // 카메라가 바라보는 좌표 설정
+            camera1.lookAt( 0, 0, 0 );
+
+            new OrbitControls(camera1, document.getElementById('canvas2'));
+
+            // 장면을 생성한다.
+            const scene1 = new THREE.Scene();
+
+            const color = 0xffffff;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(-1, 2, 4);
+            scene1.add(light);
+
+            const loader = new FontLoader();
+
+            loader.load( '../../../three.js/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+                
+                const geometry = new TextGeometry( 'hello', {
+                    font: font,
+                    size: 8000,
+                    height: 500,
+                    curveSegments: 15,
+                    bevelEnabled: true,
+                    bevelThickness: 10,
+                    bevelSize: 8,
+                    bevelOffset: 10,
+                    bevelSegments: 5
+                } );
+                let material = new THREE.MeshPhongMaterial({color: 0x515151});
+                let textaaa = new THREE.Mesh(geometry, material);
+
+                scene1.add( textaaa );
+            } );
+            // 변경된 내용을 화면에 표시한다.
+            renderer1.render( scene1, camera1 );
+
+        </script>
+    </body>
+</html>
