@@ -1,5 +1,5 @@
-import * as THREE from '../build/three.module.js';
-import { OrbitControls } from '../examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../../three.js/build/three.module.js';
+import { OrbitControls } from '../../../three.js/examples/jsm/controls/OrbitControls.js';
 
 class App {
     constructor() {
@@ -69,7 +69,7 @@ class App {
         let geometry = new THREE.BufferGeometry();
         geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
 
-        const sprite = new THREE.TextureLoader().load('../examples/textures/sprites/disc.png');
+        const sprite = new THREE.TextureLoader().load('../../../three.js/examples/textures/sprites/disc.png');
 
         let material = new THREE.PointsMaterial({
             map: sprite,

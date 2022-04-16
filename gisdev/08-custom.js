@@ -1,6 +1,6 @@
-import * as THREE from '../build/three.module.js';
-import { OrbitControls } from '../examples/jsm/controls/OrbitControls.js';
-import { VertexNormalsHelper } from '../examples/jsm/helpers/VertexNormalsHelper.js'
+import * as THREE from '../../../three.js/build/three.module.js';
+import { OrbitControls } from '../../../three.js/examples/jsm/controls/OrbitControls.js';
+import { VertexNormalsHelper } from '../../../three.js/examples/jsm/helpers/VertexNormalsHelper.js'
 
 class App {
     constructor() {
@@ -105,7 +105,7 @@ class App {
 
 
         const textureLoader = new THREE.TextureLoader();
-        const map =textureLoader.load('../examples/textures/uv_grid_opengl.jpg');
+        const map =textureLoader.load('../../../three.js/examples/textures/uv_grid_opengl.jpg');
 
         const material = new THREE.MeshPhongMaterial({
             color: 0xffffff,

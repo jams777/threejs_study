@@ -1,5 +1,5 @@
-import * as THREE from '../build/three.module.js';
-import { OrbitControls } from '../examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../../three.js/build/three.module.js';
+import { OrbitControls } from '../../../three.js/examples/jsm/controls/OrbitControls.js';
 
 class App {
     constructor() {
@@ -58,7 +58,7 @@ class App {
     _setupModel() {
         
         const textureLoader = new THREE.TextureLoader();
-        const map = textureLoader.load('../examples/textures/uv_grid_opengl.jpg', 
+        const map = textureLoader.load('../../../three.js/examples/textures/uv_grid_opengl.jpg', 
         texture=>{
             texture.repeat.x = 1;
             texture.repeat.y = 1;

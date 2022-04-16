@@ -1,8 +1,7 @@
-import * as THREE from '../build/three.module.js';
-//import * as THREE from 'three';
-import { OrbitControls } from '../examples/jsm/controls/OrbitControls.js';
-import { FontLoader } from '../examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from '../examples/jsm/geometries/TextGeometry.js';
+import * as THREE from '../../../three.js/build/three.module.js';
+import { OrbitControls } from '../../../three.js/examples/jsm/controls/OrbitControls.js';
+import { FontLoader } from '../../../three.js/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from '../../../three.js/examples/jsm/geometries/TextGeometry.js';
 
 class App {
     constructor() {
@@ -174,7 +173,7 @@ class App {
         // ttf 폰트 필요
         const fontLoader = new FontLoader();
         async function loadFont(that) {
-            const url = '../examples/fonts/helvetiker_regular.typeface.json';
+            const url = '../../../three.js/examples/fonts/helvetiker_regular.typeface.json';
             const font = await new Promise((resolve, reject) => {
                 fontLoader.load(url, resolve, undefined, reject);
             });
