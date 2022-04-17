@@ -36,11 +36,17 @@ class App {
     }
 
     _setupModel() {
+        console.log(THREE.Path)
         const loader = new FontLoader();
-
-        loader.load("./data/NanumMyeongjo_Regular.json",
+        // https://components.ai/api/v1/typefaces/noto-sans-kr/normal/400
+        //loader.load("./data/NanumMyeongjo_Regular.json",
+        //loader.load("./data/Do Hyeon_Regular.json",
+        //loader.load("./data/NanumGothic_Regular.json",
+        loader.load("./data/Noto Sans CJK KR Regular.json",
+        
+        
             (font) => {
-                const geometry = new TextGeometry("    danbee.Ai\n한국어 챗봇빌더",
+                const geometry = new TextGeometry("단비danbee.Ai\n한국어 챗봇빌더",
                     {
                         font: font,
                         size: 0.3,
