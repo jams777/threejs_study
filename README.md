@@ -2,6 +2,10 @@
 
 three.js 라이브러리 사용법을 배우는것을 목표로 한다.
 
+스터디에서는 three.js 는 서브모듈로 가져와서 상대경로로 참조해서 사용한다.
+```
+git clone --recurse-submodules https://github.com/jams777/threejs_study.git
+```
 
 ## threejs_doc
 
