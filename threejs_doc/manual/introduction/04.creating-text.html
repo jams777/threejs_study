@@ -33,6 +33,14 @@
             z-index: 100;
             display:block;
         }
+        #info2 {
+            position: absolute;
+            top: 90px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display:block;
+        }
         canvas{
             top:100px;
         }
@@ -41,17 +49,19 @@
     <body>
         <!-- 1. DOM + CSS -->
         <div id="info">1. DOM + CSS 로 텍스트를 표시</div>
-        <div id="info1">2. 캔버스에 텍스트를 그리고 
+        <div id="info1">2. <a href="https://threejs.org/docs/index.html#examples/en/renderers/CSS2DRenderer" target="_blank">CSS2DRenderer</a>, 
+            <a href="https://threejs.org/docs/index.html#examples/en/renderers/CSS3DRenderer" target="_blank">CSS3DRenderer</a> 를 사용</div>
+        <div id="info2">3. 캔버스에 텍스트를 그리고 
             <a href="https://threejs.org/docs/index.html#api/en/textures/Texture" target="_blank">Texture</a>로 사용
         </div>
-        <div id="canvas" style="top:100px;position: relative;"></div>
-        <div style="width: 100%;text-align: center;position: absolute;top:350px;">
-            3. 본인이 가장 선호하는 3D 앱으로 만들고 three.js로 export 하세요. ( 이건 블랜더로드를 참고) <br><br>
-            4. 절차적 텍스트 geometry
+        <div id="canvas" style="top:110px;position: relative;"></div>
+        <div style="width: 100%;text-align: center;position: absolute;top:320px;">
+            4. 본인이 가장 선호하는 3D 앱으로 만들고 three.js로 export 하세요. ( 이건 블랜더로드를 참고) <br><br>
+            5. 절차적 텍스트 geometry
         </div>
         <div id="canvas2" style="top:200px;position: relative;"></div>
-        <div style="width: 100%;text-align: center;position: absolute;top:800px;">
-            5. 비트맵 글꼴 
+        <div style="width: 100%;text-align: center;position: absolute;top:650px;">
+            6. 비트맵 글꼴 
             <a href="https://github.com/Jam3/three-bmfont-text" target="_blank">three-bmfont-text</a>
             <a href="https://jam3.github.io/three-bmfont-text/test/" target="_blank">(demo)</a><br>
             <a href="https://github.com/etiennepinchon/aframe-fonts" target="_blank"> A-Frame Fonts</a>
@@ -71,7 +81,7 @@
 			// 1. 가로 크기
 			// 2. 세로 크기
 			// 3. updateStyle : 낮은 해상도를 원하면 false
-            renderer.setSize( window.innerWidth, window.innerHeight-600 );
+            renderer.setSize( window.innerWidth, 200 );
             // html 의 div 태그에 추가한다. canvas 가 추가됨.
             document.getElementById('canvas').appendChild( renderer.domElement );
 
@@ -132,7 +142,7 @@
 			// 1. 가로 크기
 			// 2. 세로 크기
 			// 3. updateStyle : 낮은 해상도를 원하면 false
-            renderer1.setSize( window.innerWidth, window.innerHeight-500 );
+            renderer1.setSize( window.innerWidth, 200 );
             // html 의 div 태그에 추가한다. canvas 가 추가됨.
             document.getElementById('canvas2').appendChild( renderer1.domElement );
 
@@ -141,7 +151,7 @@
 			// 2. aspect ratio(종횡비) : 대부분의 경우 요소의 높이와 너비에 맞추어 표시
 			// 3. near 가까운 절단면 : 절단면 이외의 값은 render 화면에 표시되지 않음
 			// 4. far 먼 절단면
-            const camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight-600, 0.3, 100 );
+            const camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / 200, 0.3, 100 );
             // 카메라의 좌표를 바꿔본다. 물체에서 앞으로 100정도 떨어짐 (0, 0, 100)
             camera1.position.set( 0, 0, 0 );
             // 카메라가 바라보는 좌표 설정

@@ -69,7 +69,7 @@ class App {
 
         this._mixer = mixer;
         this._animationsMap = animationsMap;
-        this._currentAnimationAction =  this._animationsMap["idle"];
+        this._currentAnimationAction =  this._animationsMap["armwave"];
         this._currentAnimationAction.play();
     }
 
