@@ -62,7 +62,7 @@ class App {
                 const animationName = domButton.innerHTML;
                 this.changeAnimation(animationName);
             });
-
+ 
             const animationAction = mixer.clipAction(animationClip);
             animationsMap[name] = animationAction;
         });
@@ -74,9 +74,13 @@ class App {
     }
 
     _setupModel() {
-        new GLTFLoader().load("./data/20220414-rain-lopoly-drophead-animation.gltf", (gltf) => {
+        //new GLTFLoader().load("./data/20220414-rain-lopoly-drophead-animation.gltf", (gltf) => {
+        // new GLTFLoader().load("./data/20220420-rain-coat-newblend-animation-mix2.gltf", (gltf) => {
+        new GLTFLoader().load("./data/20220421-rain-coat-newblend-animation-mix2.gltf", (gltf) => {
+            console.log(gltf);
+
             const model = gltf.scene;
-            model.position.set(0, -150, 0);
+            model.position.set(0, -1.9, 1);
             this._scene.add(model);
             
             this._setupAnimations(gltf);
@@ -85,22 +89,38 @@ class App {
 
     _setupCamera() {
         const camera = new THREE.PerspectiveCamera(
-            65, 
+            48, 
             window.innerWidth / window.innerHeight, 
-            10, 
-            3000
+            0.1, 
+            4000
         );
 
-        camera.position.set(0, 0, 1000);
+        camera.position.set(0, 0, 10);
+        //camera.position.z = 1000;
+        camera.lookAt(0, 0, 0);
         this._camera = camera;
+
+        //const helper = new THREE.CameraHelper( camera );
+        //this._scene.add( helper );
+
     }
 
     _setupLight() {
         const color = 0xffffff;
         const intensity = 1.2;
+        
+        const ambientLight = new THREE.AmbientLight(color, 0.2);
+        //ambientLight.position.set(0, 0, 1);
+        this._scene.add(ambientLight);
+
         const light = new THREE.DirectionalLight(color, intensity);
         light.position.set(0, 0, 1);
         this._scene.add(light);
+        //this._camera.add(light);
+
+        const helper = new THREE.DirectionalLightHelper( light, 2 );
+        this._scene.add( helper );
+
     }
 
     update(time) {

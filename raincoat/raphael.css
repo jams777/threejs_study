@@ -47,7 +47,7 @@ body {
 }
 
 /* new elements 2022.04.21 */
-#header, #content-container, #input-container, #footer{
+#header, #content-container-wrap, #input-container, #footer{
     position: fixed;
 }
 #header{
@@ -60,21 +60,28 @@ body {
 #header #logo{
     width:240px;
 }
-#content-container{
+#content-container-wrap{
     color:#fff;
+    width: 100%;
     bottom:80px;
-    left:20px;
-    right:20px;
     font-size:20px;
     line-height:36px;
-    padding:30px;
-    /*background:blue;*/
-
+    text-align: center;
+}
+#content-container{
+    width: 100%;
+    max-width: 350px;
+    text-align: initial;
+    display: inline-block;
 }
 #input-container{
     bottom:5px;
     width:100%;
     text-align: center;
+}
+#input-container img{
+    width:100%;
+    max-width: 350px;
 }
 .chatbot-buttons div{
     color:#06f;
