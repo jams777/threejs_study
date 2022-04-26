@@ -96,6 +96,7 @@ class App {
         
         this._setupCamera();
         this._setupModel();
+        this._setupControls();
 
     }
 
