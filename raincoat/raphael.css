@@ -33,6 +33,13 @@ body {
     top: 100px;
     gap: 1em;
 }
+#controls_r {
+    display: block;
+    position: fixed;
+    right: 10px;
+    top: 100px;
+    gap: 1em;
+}
 
 .button {
     text-align: center;

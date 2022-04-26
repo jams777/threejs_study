@@ -7,6 +7,12 @@ class App {
         const divContainer = document.querySelector("#webgl-container");
         this._divContainer = divContainer;
 
+        this._currentModelIndex = 0;
+        this._currentModel = [
+            './data/20220421-rain-coat-newblend-animation-mix2.gltf',
+            './data/ubee-03-smallsize-animation.gltf'
+        ];
+
         const renderer = new THREE.WebGLRenderer({ antialias: true,  alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         divContainer.appendChild(renderer.domElement);
@@ -47,11 +53,15 @@ class App {
         const mixer = new THREE.AnimationMixer(model);
         const gltfAnimations = gltf.animations;
         const domControls = document.querySelector("#controls");
+        domControls.innerHTML = '';
         const animationsMap = {};
-
+        let firstAnimation = '';
         gltfAnimations.forEach(animationClip => {
             const name = animationClip.name;
             console.log(name);
+            if ( firstAnimation === '' ) {
+                firstAnimation = name;
+            }
 
             const domButton = document.createElement("div");
             domButton.classList.add("button");
@@ -69,33 +79,91 @@ class App {
 
         this._mixer = mixer;
         this._animationsMap = animationsMap;
-        this._currentAnimationAction =  this._animationsMap["armwave"];
+        this._currentAnimationAction =  this._animationsMap[firstAnimation];
         this._currentAnimationAction.play();
+    }
+
+    _changeModel() {
+
+        var selectedObject = this._scene.getObjectByName('rain_model');
+        this._scene.remove(selectedObject);
+
+        if ( this._currentModelIndex == 0 ) {
+            this._currentModelIndex = 1;
+        } else {
+            this._currentModelIndex = 0;
+        }
+        
+        this._setupCamera();
+        this._setupModel();
+
+    }
+
+    _setupModelButton() {
+        const domControls = document.querySelector("#controls_r");
+        domControls.innerHTML = '';
+        
+        const domButton = document.createElement("div");
+        domButton.classList.add("button");
+        
+        if ( this._currentModelIndex == 0 ) {
+            domButton.innerText = "ubee";
+        } else {
+            domButton.innerText = "raincoat";
+        }
+        domControls.appendChild(domButton);
+
+        domButton.addEventListener("click", () => {
+            const modelN = domButton.innerHTML;
+            this._changeModel();
+        });
+
     }
 
     _setupModel() {
         //new GLTFLoader().load("./data/20220414-rain-lopoly-drophead-animation.gltf", (gltf) => {
         // new GLTFLoader().load("./data/20220420-rain-coat-newblend-animation-mix2.gltf", (gltf) => {
-        new GLTFLoader().load("./data/20220421-rain-coat-newblend-animation-mix2.gltf", (gltf) => {
+        new GLTFLoader().load(this._currentModel[this._currentModelIndex], (gltf) => {
             console.log(gltf);
 
             const model = gltf.scene;
-            model.position.set(0, -1.9, 1);
+            if ( this._currentModelIndex == 0 ) {
+                model.position.set(0, -1.9, 1);
+            } else {
+                model.position.set(0, 0, 1.1);
+            }
+            model.name = 'rain_model';
             this._scene.add(model);
+            console.log(this._scene);
             
             this._setupAnimations(gltf);
+
+            this._setupModelButton();
         });
     }
 
     _setupCamera() {
+        
+        let fov = 0;
+        let far = 0;
+        if ( this._currentModelIndex == 0 ) {
+            fov = 48;
+            far = 4000;
+        } else {
+            fov = 10;
+            far = 1000;
+        }
         const camera = new THREE.PerspectiveCamera(
-            48, 
+            fov, 
             window.innerWidth / window.innerHeight, 
             0.1, 
-            4000
+            far
         );
-
-        camera.position.set(0, 0, 10);
+        if ( this._currentModelIndex == 0 ) {
+            camera.position.set(0, 0, 10);
+        } else {
+            camera.position.set(0, 4, 13);
+        }
         //camera.position.z = 1000;
         camera.lookAt(0, 0, 0);
         this._camera = camera;
