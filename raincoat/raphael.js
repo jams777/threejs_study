@@ -49,6 +49,12 @@ class App {
         const previousAnimationAction = this._currentAnimationAction;
         this._currentAnimationAction = this._animationsMap[animationName];
 
+        if ( animationName == 'nla-land' ) {
+            this._currentAnimationAction.setLoop(THREE.LoopRepeat);
+            this._currentAnimationAction.clampWhenFinished = false;
+            this._currentAnimationAction.enable = true;
+        }
+
         if(previousAnimationAction !== this._currentAnimationAction) {
             previousAnimationAction.fadeOut(0.5);
             this._currentAnimationAction.reset().fadeIn(0.5).play();
@@ -93,9 +99,20 @@ class App {
         });
 
         this._mixer = mixer;
+        this._mixer.addEventListener( 'finished',(e)=>{
+            if (e.action._clip.name == 'nla-land') {
+                this.changeAnimation('nla-idle');
+            }
+        });
+
         this._animationsMap = animationsMap;
         //this._currentAnimationAction =  this._animationsMap[firstAnimation];
         this._currentAnimationAction =  this._animationsMap[this._currentStartAction[this._currentModelIndex][0]];
+        if ( this._currentStartAction[this._currentModelIndex][0] == 'nla-land' ) {
+            this._currentAnimationAction.setLoop(THREE.LoopOnce);
+            this._currentAnimationAction.clampWhenFinished = true;
+            this._currentAnimationAction.enable = true;
+        }
         this._currentAnimationAction.play();
     }
     _setupAnimations1(gltf) {
